@@ -581,7 +581,7 @@ const HANDLERS = {
     if (n < 1) { set(0); return; }
     if (REDUCED) { set(5); return; }
     set(1);
-    [ [1, 900], [2, 1700], [3, 2500], [4, 3500] ].forEach(([step, ms]) =>
+    [ [1, 480], [2, 900], [3, 1320], [4, 1900] ].forEach(([step, ms]) =>
       s._seq.push(setTimeout(() => set(step + 1), ms)));
   },
 
@@ -1126,7 +1126,8 @@ addEventListener('click', e => {
 
 // 舞台點擊也可推進（避開按鈕與互動元件）
 stage.addEventListener('click', e => {
-  if (e.target.closest('.btn, .myth, .qcard, iframe, .videobox')) return;
+  // 互動元件自己處理點擊，不可再觸發翻頁
+  if (e.target.closest('.btn, .myth, .qcard, iframe, .videobox, .vtabs, .vtab, a')) return;
   next();
 });
 /* ── 影片：點擊才播，切分頁才換 ── */
