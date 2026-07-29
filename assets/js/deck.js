@@ -292,10 +292,32 @@ addEventListener('resize', fit); fit();
 
 /* ══════════ 4. 建立案例頁 ══════════ */
 
+// 三軸三層：大關鍵字（資本名） → 短名（記憶點） → 一句話
 const AXIS = [
-  { n:'①', nm:'拿得到', icon:'i19', cls:'axis--1' },
-  { n:'②', nm:'用得對', icon:'i20', cls:'axis--2' },
-  { n:'③', nm:'走得遠', icon:'i21', cls:'axis--3' }
+  { n:'①', big:'資源', en:'RESOURCE', nm:'拿得到', icon:'i19', cls:'axis--1' },
+  { n:'②', big:'財商', en:'FINANCE',  nm:'用得對', icon:'i20', cls:'axis--2' },
+  { n:'③', big:'信任', en:'TRUST',    nm:'走得遠', icon:'i21', cls:'axis--3' }
+];
+
+// 引起動機文字雲：全部都是這場後面會被回答的問題（lv 決定字級）
+const CLOUD = [
+  { t:'你缺的不是努力',              lv:3, ax:0 },
+  { t:'馬斯克也拿過政府的錢',        lv:2, ax:1 },
+  { t:'台積電近一半是國家出的',      lv:2, ax:1 },
+  { t:'戴森被銀行全部拒絕過',        lv:1, ax:1 },
+  { t:'青創貸款，一輩子只能拿一次？', lv:2, ax:1 },
+  { t:'不缺錢，也該去借',            lv:1, ax:1 },
+  { t:'政府是你最大的客戶',          lv:1, ax:1 },
+  { t:'開公司的唯一目的是什麼',      lv:2, ax:1 },
+  { t:'有賺錢，帳上卻沒錢',          lv:3, ax:2 },
+  { t:'高槓桿＝高風險？',            lv:2, ax:2 },
+  { t:'9% 配息，是機會還是陷阱',     lv:2, ax:2 },
+  { t:'最危險的是看起來像機會的',    lv:1, ax:2 },
+  { t:'老闆的錢跟公司的錢',          lv:1, ax:2 },
+  { t:'他們都不去扶輪社',            lv:3, ax:3 },
+  { t:'換了幾百張名片，然後呢',      lv:2, ax:3 },
+  { t:'不擅長社交就沒救了嗎',        lv:1, ax:3 },
+  { t:'把半條命交給對手',            lv:1, ax:3 }
 ];
 
 /* 五種資訊圖表原型（viewBox 620×230），資料驅動指派給十個案例 */
@@ -374,7 +396,7 @@ function buildCases() {
           <div class="axes axes--case">
             ${AXIS.map((a, k) => `<div class="axis ${a.cls}" data-axis-i="${k}">
               <svg class="ic ic-32" viewBox="0 0 24 24"><use href="#${a.icon}"/></svg>
-              <span class="nm">${a.n} ${a.nm}</span>
+              <span class="nm"><b>${a.big}</b>${a.nm}</span>
               <span class="desc">${c['a' + (k + 1)]}</span>
             </div>`).join('')}
           </div>
@@ -450,10 +472,10 @@ let slides = [], cur = 0, step = 0, blackedOut = false;
 const has = (s, k) => s.dataset[k] !== undefined;
 
 // 各互動頁的總步數
-const STEPS = { axisloop:4, case:1, matrix:2, fail:3, rotary:2, iobox:2, stack:4,
+const STEPS = { cloud:1, axisloop:4, case:1, matrix:2, fail:3, rotary:2, iobox:2, stack:4,
   esbi:4, puzzle:4, quiz:5, mirrors:5, fade10:2, recall:3, ladder:6, seats:2,
   poll:2, why:1, whyopen:4, b2g:3, anchor:1, valuestack:5, price:4,
-  plan:5, planby:5, year:3, club6:3, salon6:2, tiers:3, salon12:2, funnel2:5, countdown:1 };
+  plan:5, planby:5, year:3, club6:3, salon6:2, tiers:3, countdown:1 };
 
 function maxStep(s) {
   if (has(s, 'flip')) return +s.dataset.flip + 1;
@@ -743,7 +765,7 @@ const HANDLERS = {
       const lit = +s.dataset.anchor;
       box.innerHTML = AXIS.map((a, i) => `<div class="an ${a.cls}${i === lit ? ' is-on' : ''}">
         <svg class="ic ic-48" viewBox="0 0 24 24"><use href="#${a.icon}"/></svg>
-        <span>${a.n} ${a.nm}</span></div>`).join('');
+        <b class="an-big">${a.big}</b><span>${a.nm}</span></div>`).join('');
     }
     s.classList.toggle('show-punch', n >= 1);
   },
@@ -767,6 +789,22 @@ const HANDLERS = {
     else if (n < 4) { box.dataset.counted = ''; el2.textContent = '$' + sum.toLocaleString() + (sum ? '+' : ''); }
     box.classList.toggle('is-total', n >= 4);
     s.classList.toggle('show-punch', n >= 5);
+  },
+
+  // 引起動機文字雲：按一次自動分批浮現
+  cloud(s, n) {
+    const box = $('#cloud', s);
+    if (!box.dataset.built) {
+      box.dataset.built = 1;
+      box.innerHTML = CLOUD.map((c, i) =>
+        `<span class="cw cw--l${c.lv} cw--a${c.ax}" data-i="${i}">${c.t}</span>`).join('');
+    }
+    (s._seq || []).forEach(clearTimeout); s._seq = [];
+    const items = $$('.cw', box);
+    if (n < 1) { items.forEach(x => x.classList.remove('is-on')); s.classList.remove('show-punch'); return; }
+    if (REDUCED) { items.forEach(x => x.classList.add('is-on')); s.classList.add('show-punch'); return; }
+    items.forEach((x, i) => s._seq.push(setTimeout(() => x.classList.add('is-on'), 90 + i * 130)));
+    s._seq.push(setTimeout(() => s.classList.add('show-punch'), 90 + items.length * 130 + 400));
   },
 
   // 年度時間軸：Salon 每月 ＋ Club 每兩月
@@ -958,8 +996,9 @@ function axisLoopSVG() {
     <path id="al-h2" class="al-arrow" d="M0 -9 L13 0 L0 9 Z" transform="translate(148,262) rotate(-70)"/>
     ${AXIS.map((a, i) => `<g id="al-n${i}" class="al-node ${a.cls}" transform="translate(${P[i][0]},${P[i][1]})">
         <circle r="62" class="al-bg"/><circle r="62" class="al-ring"/>
-        <svg x="-25" y="-42" width="50" height="50" viewBox="0 0 24 24" class="ic"><use href="#${a.icon}"/></svg>
-        <text y="34" class="al-nm">${a.nm}</text>
+        <svg x="-24" y="-46" width="48" height="48" viewBox="0 0 24 24" class="ic"><use href="#${a.icon}"/></svg>
+        <text y="22" class="al-big">${a.big}</text>
+        <text y="46" class="al-nm">${a.nm}</text>
       </g>`).join('')}
     <g id="al-core" class="al-core" transform="translate(300,300)">
       <circle r="46" class="al-corebg"/>

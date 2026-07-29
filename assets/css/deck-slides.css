@@ -836,3 +836,38 @@
 .qa-bottom{display:flex;align-items:center;justify-content:center;gap:56px;margin-top:22px;}
 .qa-faces{display:flex;gap:20px;}
 .qa-faces .avatar-sm{width:84px;height:84px;}
+
+/* ---------- 引起動機：好奇心文字雲 ---------- */
+.s-cloud .slide-in{padding-top:0;}
+.cloud{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;
+  gap:18px 32px;max-width:1560px;}
+.cw{opacity:0;transform:translateY(10px) scale(.96);
+  transition:opacity 420ms var(--ease-out),transform 420ms var(--ease-spring);
+  font-family:var(--serif);line-height:1.25;white-space:nowrap;}
+.cw.is-on{opacity:1;transform:none;}
+.cw--l1{font-size:26px;color:var(--paper-46);}
+.cw--l2{font-size:38px;color:var(--paper-72);}
+.cw--l3{font-size:56px;color:var(--gold-300);text-shadow:0 0 24px rgba(242,220,162,.22);}
+.cw--a1.cw--l2{color:var(--gold-500);}
+.cw--a2.cw--l2{color:var(--paper);}
+.cw--a3.cw--l2{color:var(--gold-700);}
+.cw--a0{color:var(--gold-300);}
+.cloud-punch{margin-top:34px;opacity:0;transform:translateY(14px);
+  transition:all var(--dur-slow) var(--ease-out);}
+.show-punch .cloud-punch{opacity:1;transform:none;}
+
+/* ---------- 三軸大關鍵字 ---------- */
+.axis-big{display:inline-block;margin-right:20px;padding:2px 18px;border-radius:var(--radius-pill);
+  background:var(--surface-gold);border:1px solid var(--line);
+  font-family:var(--serif);font-size:40px;color:var(--gold-300);vertical-align:middle;}
+.cap-big{margin-top:10px;font-family:var(--serif);font-size:38px;color:var(--gold-300);
+  letter-spacing:.12em;}
+.agenda-big{display:inline-block;min-width:76px;margin-right:14px;
+  font-family:var(--serif);color:var(--gold-300);letter-spacing:.08em;}
+.axes .axis .nm b{display:inline-block;margin-right:12px;color:var(--gold-300);
+  font-size:1.08em;letter-spacing:.06em;}
+.an-big{display:block;font-family:var(--serif);font-size:32px;color:var(--gold-300);
+  letter-spacing:.1em;}
+.an.is-on .an-big{text-shadow:0 0 18px rgba(242,220,162,.35);}
+.al-big{font-family:var(--serif);font-size:30px;fill:var(--gold-300);text-anchor:middle;}
+.al-node .al-nm{font-size:21px;fill:var(--paper-72);}
