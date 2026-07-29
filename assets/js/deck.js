@@ -403,6 +403,7 @@ const FRAG_TOTAL = 8;
 let fragments = 0;
 
 function drawClock(svg, lit, big) {
+  if (!svg) return;
   svg.innerHTML = '';
   const cx = 50, cy = 50, r = 38;
   el('circle', { cx, cy, r, fill:'none', stroke:'var(--line-hair)', 'stroke-width':'1.5' }, svg);
@@ -449,7 +450,7 @@ let slides = [], cur = 0, step = 0, blackedOut = false;
 const has = (s, k) => s.dataset[k] !== undefined;
 
 // 各互動頁的總步數
-const STEPS = { axisloop:4, case:5, matrix:2, fail:3, rotary:2, iobox:2, stack:4,
+const STEPS = { axisloop:4, case:1, matrix:2, fail:3, rotary:2, iobox:2, stack:4,
   esbi:4, puzzle:4, quiz:5, mirrors:5, fade10:2, recall:3, ladder:6, seats:2,
   poll:2, why:1, whyopen:4, b2g:3, anchor:1, valuestack:5, price:4,
   plan:5, planby:5, year:3, club6:3, salon6:2, tiers:3, salon12:2, funnel2:5, countdown:1 };
@@ -474,6 +475,7 @@ function show(i, dir = 1) {
 
   if (prev && prev !== next) {
     if (prev.dataset.video !== undefined) stopVideo(prev);
+    (prev._seq || []).forEach(clearTimeout); prev._seq = [];
     prev.classList.add('slide--out');
     setTimeout(() => { prev.classList.remove('is-active', 'slide--out'); }, REDUCED ? 60 : 240);
   }
@@ -567,10 +569,20 @@ const HANDLERS = {
     if (n === 4 && !has(s, 'final')) addFragment();
   },
 
+  // 案例頁：按一次就自動依序彈出（數字圖表 → 三軸 → 金句），不需要一直點
   case(s, n) {
-    s.classList.toggle('show-data', n >= 1);
-    $$('.axis', s).forEach((a, i) => a.classList.toggle('is-on', i < n - 1));
-    s.classList.toggle('show-key', n >= 5);
+    (s._seq || []).forEach(clearTimeout); s._seq = [];
+    const axes = $$('.axis', s);
+    const set = k => {
+      s.classList.toggle('show-data', k >= 1);
+      axes.forEach((a, i) => a.classList.toggle('is-on', i < k - 1));
+      s.classList.toggle('show-key', k >= 5);
+    };
+    if (n < 1) { set(0); return; }
+    if (REDUCED) { set(5); return; }
+    set(1);
+    [ [1, 900], [2, 1700], [3, 2500], [4, 3500] ].forEach(([step, ms]) =>
+      s._seq.push(setTimeout(() => set(step + 1), ms)));
   },
 
   matrix(s, n) {
@@ -1154,7 +1166,7 @@ buildMatrix();
 slides = $$('.slide');
 $('#dots').innerHTML = CHAPTERS.map(() => '<span class="dot"></span>').join('');
 drawClock($('#clock'), 0);
-drawClock($('#qaClock'), FRAG_TOTAL, true);
+if ($('#qaClock')) drawClock($('#qaClock'), FRAG_TOTAL, true);
 buildOverview();
 // 深連結：?s=12&step=4　用於彩排定位與截圖驗收
 const QS = new URLSearchParams(location.search);

@@ -811,3 +811,28 @@
   filter:saturate(.9) brightness(.95);}
 .usd-shot figcaption{padding:10px 12px;text-align:center;font-size:16px;
   color:var(--paper-46);background:var(--surface);}
+
+/* ---------- 金融案例：原始文件圖 ---------- */
+.docrow{display:grid;grid-template-columns:1.35fr 1fr;gap:36px;align-items:center;}
+.doc{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line-soft);
+  background:var(--paper);opacity:0;transform:translateY(14px);
+  transition:all var(--dur-base) var(--ease-out);}
+.doc.is-revealed{opacity:1;transform:none;}
+.doc img{width:100%;display:block;}
+.doc--wide{max-width:1180px;margin:0 auto;}
+.doc--wide img{max-height:480px;object-fit:contain;background:var(--paper);}
+.docside{text-align:left;}
+.dk{padding:18px 26px;border:1px solid var(--line-hair);border-radius:var(--radius);
+  background:var(--surface);margin-bottom:14px;
+  opacity:0;transform:translateY(12px);transition:all var(--dur-base) var(--ease-out);}
+.dk.is-revealed{opacity:1;transform:none;}
+.dk--lit{background:var(--surface-gold);border-color:var(--line);}
+.dk b{display:block;font-family:var(--num);font-size:62px;line-height:1;color:var(--paper-72);}
+.dk--lit b{font-size:76px;color:var(--gold-300);text-shadow:0 0 26px rgba(242,220,162,.35);}
+.dk b small{font-size:28px;margin-left:2px;}
+.dk span{display:block;margin-top:6px;font-size:19px;letter-spacing:.08em;color:var(--paper-46);}
+
+/* ---------- Q&A 併入席次頁 ---------- */
+.qa-bottom{display:flex;align-items:center;justify-content:center;gap:56px;margin-top:22px;}
+.qa-faces{display:flex;gap:20px;}
+.qa-faces .avatar-sm{width:84px;height:84px;}

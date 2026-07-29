@@ -90,10 +90,14 @@ html,body{height:100%;background:var(--ink-950);overflow:hidden;}
 body{font-family:var(--sans);color:var(--paper);
   -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
 
-/* 舞台：固定 1920x1080，用 JS 設定 --scale 等比縮放置中 */
-.stage-wrap{position:fixed;inset:0;display:grid;place-items:center;}
-.stage{position:relative;width:var(--stage-w);height:var(--stage-h);
-  transform:scale(var(--scale,1));transform-origin:center center;
+/* 舞台：固定 1920x1080，用 JS 設定 --scale 等比縮放置中
+   ⚠ 不可用 grid place-items 置中：比視窗大的元素在 grid 裡不會真的置中，
+   會往右下偏並被裁切。改用絕對定位 + translate(-50%,-50%)，任何視窗都正確。 */
+.stage-wrap{position:fixed;inset:0;overflow:hidden;}
+.stage{position:absolute;left:50%;top:50%;
+  width:var(--stage-w);height:var(--stage-h);
+  transform:translate(-50%,-50%) scale(var(--scale,1));
+  transform-origin:center center;
   background:radial-gradient(ellipse at 50% -10%,rgba(214,177,106,.07),transparent 55%),
     linear-gradient(180deg,var(--ink-800),var(--ink-900));
   overflow:hidden;}
