@@ -154,32 +154,26 @@ const YEAR = [
 ];
 const CLUB6 = [
   { n:'第一場', m:'2026.08', t:'運動競技餐酒', d:'紅酒 × 室內高爾夫 × 高級餐點',
-    bench:'對標　鷹 house BISTRO．City Hub 大直',
-    hi:'服裝規定本身就是儀式感；伴手禮由會員自家品牌提供' },
+    hi:'從服裝到伴手禮，每個細節都是儀式感' },
   { n:'第二場', m:'2026.10', t:'品味鑑賞', d:'垂直品酒會',
-    bench:'對標　SMWS．誠品酒窖限額大師講堂',
     hi:'限量編號酒款、侍酒師故事、餐酒搭配。可延伸威士忌與雪茄' },
   { n:'第三場', m:'2026.12', t:'尊榮私宴', d:'歲末私廚私宴',
-    bench:'對標　私人招待所．Core Club',
     hi:'署名邀請、精選席次、主廚上桌，一年結束在最尊榮的餐桌' },
   { n:'第四場', m:'2027.02', t:'戶外莊園', d:'高爾夫邀請賽或馬術莊園日',
-    bench:'對標　實體球場．馬術莊園',
     hi:'一整天的戶外行程，獎項與排名帶來真實的競技張力' },
   { n:'第五場', m:'2027.04', t:'風格鑑賞', d:'遊艇私宴或藝術珠寶鑑賞',
-    bench:'對標　雲河遊艇．精品藝術私場',
     hi:'稀缺場域本身即價值，帶出會員的生活風格與身份認同' },
   { n:'第六場', m:'2027.06', t:'年度尊榮盛典', d:'週年會員盛典',
-    bench:'對標　Soho House 年度會員活動．YPO 年會',
-    hi:'會員成就展示、年度感謝、新一年權益發表' }
+    hi:'一年一次，所有人回到同一張桌子' }
 ];
 // Salon 六大主題（情緒目標 × 場地 × 滿足需求）
 const SALON_CAT = [
   { img:'salon-1', t:'體感競技 / 桌遊', e:'歡樂．競技．破冰', v:'閃動格子 CyberCube 南港',  need:'男性競技　社群分享' },
-  { img:'salon-2', t:'餐酒微聚 / 城市夜談', e:'深聊．有情調', v:'童裏心柑仔店．Barn Detour', need:'儀式感　商務深談' },
-  { img:'salon-3', t:'體驗療癒', e:'療癒．儀式感', v:'大天才潑畫沙龍 Datensai', need:'女性儀式　社群分享' },
-  { img:'salon-4', t:'KTV 歡唱', e:'熱絡．放鬆', v:'1884（包廂＋湯屋＋夜景）', need:'社群分享　儀式感' },
-  { img:'salon-5', t:'運動球類', e:'活力．家庭友善', v:'羽球館．球類場地', need:'男性競技　家庭擴散' },
-  { img:'salon-6', t:'財商 / 能量輕沙龍', e:'有料又輕鬆', v:'餐敘場＋天賦數字工具', need:'商務　情緒價值' }
+  { img:'salon-2', t:'餐酒微聚 / 城市夜談', e:'深聊．有情調', v:'童裏心柑仔店．Barn Detour' },
+  { img:'salon-3', t:'體驗療癒', e:'療癒．儀式感', v:'大天才潑畫沙龍 Datensai' },
+  { img:'salon-4', t:'KTV 歡唱', e:'熱絡．放鬆', v:'1884（包廂＋湯屋＋夜景）' },
+  { img:'salon-5', t:'運動球類', e:'活力．家庭友善', v:'羽球館．球類場地' },
+  { img:'salon-6', t:'財商 / 能量輕沙龍', e:'有料又輕鬆', v:'餐敘場＋天賦數字工具' }
 ];
 // Salon 十二場排程（含招募設計）
 const SALON12 = [
@@ -401,7 +395,6 @@ function buildCases() {
             </div>`).join('')}
           </div>
           <p class="quote case-key">「${c.key}」</p>
-          ${c.id === 'nvidia' ? '<p class="caption case-seed">這條供應鏈上的專利佈局，等一下有人會從<b class="g">裡面</b>講給您聽。</p>' : ''}
         </div>
       </div>
     </div>`;
@@ -857,7 +850,6 @@ const HANDLERS = {
         <span class="c6-n">${c.n}</span><span class="c6-m">${c.m}</span>
         <div class="h3" style="margin-top:6px">${c.t}</div>
         <div class="c6-d">${c.d}</div>
-        <div class="c6-bench">${c.bench}</div>
         <p class="c6-hi">${c.hi}</p></div>`).join('');
     }
     $$('.c6', box).forEach((c, i) => c.classList.toggle('is-on', i < n * 2));
@@ -872,7 +864,7 @@ const HANDLERS = {
       box.innerHTML = SALON_CAT.map((c, i) => `<figure class="s6" data-i="${i}">
         <img src="assets/img/club/${c.img}.webp" alt="${c.t}">
         <figcaption><b>${c.t}</b><span class="s6-e">${c.e}</span>
-          <span class="s6-v">${c.v}</span><span class="s6-n">${c.need}</span></figcaption></figure>`).join('');
+          <span class="s6-v">${c.v}</span></figcaption></figure>`).join('');
     }
     $$('.s6', box).forEach((c, i) => setTimeout(() => c.classList.toggle('is-on', n >= 1), n >= 1 ? i * 90 : 0));
     s.classList.toggle('show-punch', n >= 2);
