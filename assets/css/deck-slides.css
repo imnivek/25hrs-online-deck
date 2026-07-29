@@ -871,3 +871,9 @@
 .an.is-on .an-big{text-shadow:0 0 18px rgba(242,220,162,.35);}
 .al-big{font-family:var(--serif);font-size:30px;fill:var(--gold-300);text-anchor:middle;}
 .al-node .al-nm{font-size:21px;fill:var(--paper-72);}
+
+/* ---------- 場次資訊列 ---------- */
+.evinfo{display:flex;align-items:center;gap:22px;margin-top:14px;
+  font-size:24px;letter-spacing:.06em;color:var(--paper-72);}
+.evinfo b{font-family:var(--num);font-size:32px;color:var(--gold-300);margin-right:8px;}
+.evsep{width:1px;height:24px;background:var(--line-soft);}
