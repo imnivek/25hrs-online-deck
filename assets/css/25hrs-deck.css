@@ -386,8 +386,8 @@ body{font-family:var(--sans);color:var(--paper);
 .case .num{font-family:var(--num);color:var(--gold-500);}
 
 /* 投票長條圖 */
-.poll{display:flex;flex-direction:column;gap:32px;}
-.poll .bar{position:relative;display:flex;align-items:center;height:72px;
+.poll{display:flex;flex-direction:column;gap:24px;}
+.poll .bar{position:relative;display:flex;align-items:center;height:64px;
   border-radius:var(--radius-pill);background:var(--surface);
   border:1px solid var(--line-hair);overflow:hidden;
   transition:opacity var(--dur-base) var(--ease-out);}

@@ -123,7 +123,7 @@
 .s-case--flash .cstat b{font-size:56px;}
 
 /* ---------- 三軸循環圖 ---------- */
-.axisloop{width:760px;}
+.axisloop{width:620px;}
 .al{width:100%;height:auto;overflow:visible;}
 .al-arc{fill:none;stroke:var(--line-soft);stroke-width:2;stroke-dasharray:7 9;opacity:.25;
   transition:opacity var(--dur-base) var(--ease-out),stroke var(--dur-base);}
@@ -466,20 +466,20 @@
 .sc span{font-family:var(--serif);font-size:32px;color:var(--paper);}
 
 /* ---------- 價值堆疊 ---------- */
-.vstack{display:flex;flex-direction:column;gap:16px;}
+.vstack{display:flex;flex-direction:column;gap:8px;}
 .vrow{display:flex;align-items:center;justify-content:space-between;gap:40px;
-  padding:22px 32px;border:1px solid var(--line-hair);border-radius:var(--radius);
+  padding:9px 26px;border:1px solid var(--line-hair);border-radius:var(--radius);
   background:var(--surface);opacity:0;transform:translateX(-16px);
   transition:all var(--dur-base) var(--ease-out);}
 .vrow.is-on{opacity:1;transform:none;}
 .vrow .small{margin-top:6px;color:var(--paper-46);}
 .vnum{font-family:var(--num);font-size:44px;color:var(--gold-500);white-space:nowrap;}
 .vtotal{display:flex;align-items:center;justify-content:space-between;gap:40px;
-  margin-top:8px;padding:26px 32px;border:1px solid var(--line);border-radius:var(--radius);
+  margin-top:2px;padding:13px 26px;border:1px solid var(--line);border-radius:var(--radius);
   background:var(--surface-gold);opacity:0;transition:opacity var(--dur-base) var(--ease-out);}
-.vtotal>span:first-child{font-family:var(--serif);font-size:32px;color:var(--paper);}
+.vtotal>span:first-child{font-family:var(--serif);font-size:26px;color:var(--paper);}
 .is-total .vtotal{opacity:1;}
-.vsum{font-family:var(--num);font-size:64px;color:var(--gold-300);
+.vsum{font-family:var(--num);font-size:48px;color:var(--gold-300);
   text-shadow:0 0 24px rgba(242,220,162,.4);}
 .vs-punch{opacity:0;transition:opacity var(--dur-base);}
 .show-punch .vs-punch{opacity:1;}
@@ -545,14 +545,15 @@
   font-size:18px;color:var(--paper-46);white-space:nowrap;}
 
 /* ---------- 價值堆疊：逐項明細 ---------- */
-.vrow{flex-direction:column;align-items:stretch;gap:14px;}
+.vrow{flex-direction:column;align-items:stretch;gap:6px;}
 .vhd{display:flex;align-items:baseline;justify-content:space-between;gap:24px;}
-.vsub{font-family:var(--num);font-size:34px;color:var(--gold-500);}
-.vitems{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.vhd .h3{font-size:24px;}
+.vsub{font-family:var(--num);font-size:28px;color:var(--gold-500);}
+.vitems{list-style:none;display:flex;flex-direction:column;gap:2px;}
 .vitems li{display:flex;align-items:baseline;justify-content:space-between;gap:20px;
-  font-size:20px;color:var(--paper-72);
-  border-bottom:1px dotted rgba(214,177,106,.16);padding-bottom:5px;}
-.vitems li b{font-family:var(--num);font-size:24px;color:var(--gold-300);white-space:nowrap;}
+  font-size:18px;color:var(--paper-72);
+  border-bottom:1px dotted rgba(214,177,106,.16);padding-bottom:3px;}
+.vitems li b{font-family:var(--num);font-size:20px;color:var(--gold-300);white-space:nowrap;}
 
 /* ---------- 影片頁：多支切換與直式 shorts ---------- */
 .vtabs{display:flex;gap:16px;margin-top:18px;}
@@ -658,7 +659,7 @@
 
 /* ---------- 正式對外的兩個方案 ---------- */
 .tiers{display:grid;grid-template-columns:repeat(2,1fr);gap:40px;width:100%;max-width:1180px;}
-.tier{position:relative;padding:38px 42px 34px;border:1px solid var(--line-soft);
+.tier{position:relative;padding:26px 38px 24px;border:1px solid var(--line-soft);
   border-radius:var(--radius);background:var(--surface);text-align:left;
   opacity:0;transform:translateY(18px);transition:all var(--dur-base) var(--ease-out);}
 .tier.is-on{opacity:1;transform:none;}
@@ -666,17 +667,17 @@
 .tier-crown{position:absolute;top:-16px;left:42px;padding:6px 20px;border-radius:var(--radius-pill);
   background:var(--gold-500);color:var(--ink-900);font-size:17px;font-weight:700;letter-spacing:.14em;}
 .tier-k{font-family:var(--num);font-size:24px;letter-spacing:.26em;color:var(--gold-700);}
-.tier-nm{margin-top:8px;font-family:var(--serif);font-size:40px;color:var(--paper);
+.tier-nm{margin-top:6px;font-family:var(--serif);font-size:34px;color:var(--paper);
   display:flex;align-items:baseline;gap:18px;}
 .tier-nm b{font-family:var(--num);font-size:32px;color:var(--gold-300);}
-.tier-items{list-style:none;margin-top:24px;display:flex;flex-direction:column;gap:10px;}
+.tier-items{list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:6px;}
 .tier-items li{display:flex;align-items:baseline;justify-content:space-between;gap:20px;
   padding-bottom:9px;border-bottom:1px dotted rgba(214,177,106,.18);
   font-size:21px;color:var(--paper-72);}
 .tier-items li b{font-family:var(--num);font-size:23px;color:var(--gold-300);white-space:nowrap;}
-.tier-n{margin-top:26px;font-family:var(--num);font-size:76px;line-height:1;color:var(--gold-300);
+.tier-n{margin-top:16px;font-family:var(--num);font-size:62px;line-height:1;color:var(--gold-300);
   text-shadow:0 0 28px rgba(242,220,162,.3);}
-.tier--full .tier-n{font-size:88px;}
+.tier--full .tier-n{font-size:72px;}
 .tier-lb{margin-top:8px;font-size:18px;letter-spacing:.18em;color:var(--paper-46);}
 .tiers-punch{opacity:0;transform:translateY(16px);transition:all var(--dur-base) var(--ease-out);}
 .show-punch .tiers-punch{opacity:1;transform:none;}
@@ -877,3 +878,7 @@
   font-size:24px;letter-spacing:.06em;color:var(--paper-72);}
 .evinfo b{font-family:var(--num);font-size:32px;color:var(--gold-300);margin-right:8px;}
 .evsep{width:1px;height:24px;background:var(--line-soft);}
+
+/* ---------- 封面品牌標記 ---------- */
+.cover-logo{width:200px;height:200px;object-fit:contain;
+  filter:drop-shadow(0 6px 26px rgba(0,0,0,.6));}

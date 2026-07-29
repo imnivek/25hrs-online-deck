@@ -1252,6 +1252,7 @@ if (step >= maxStep(slides[cur])) {
 updateChrome();
 if (AUTO_PAGES.has(cur + 1) && !QS.has('step')) autoPlay(slides[cur]);
 
+window.__applyStep = applyStep; window.__maxStep = maxStep;   // 版面稽核用
 console.log(`%c25HRS Deck　${slides.length} 頁　│　→ 下一步　← 上一步　O 總覽　B 黑幕　F 全螢幕　R 重置`,
   'color:#d6b16a;font-size:13px');
 })();
