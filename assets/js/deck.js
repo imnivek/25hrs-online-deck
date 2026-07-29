@@ -67,7 +67,7 @@ const CASES = [
     a3:'支付寶擔保交易，用制度解決社會信任死穴',
     key:'承認自己不懂，是他做過最有金融素養的決定' },
   { id:'tencent', chart:'shield', stats:[['$2.2M','天使輪'], ['50%','半條命交給夥伴'], ['兆級','投資生態系']], m1:'IDG 天使輪', m2:'轉向資本配置', m3:'只給流量不干涉', co:'Tencent 騰訊', person:'馬化騰', icon:'i09', deep:false,
-    sub:'不做的事，決定你能長多大',
+    sub:'不做的事，決定您能長多大',
     face:{hair:'short', glasses:true, collar:'suit'},
     a1:'IDG 與盈科 220 萬美元天使輪救伺服器',
     a2:'從「什麼都自己做」轉向資本配置，投京東美團',
@@ -86,7 +86,7 @@ const CASES = [
     a1:'國防部與 SBIR 專案補助起家',
     a2:'B2G 撥款慢致現金流斷裂，轉 B2C 救活週轉',
     a3:'軍規技術降維進家庭，硬實力直接換信任',
-    key:'政府訂單給你技術，消費市場才給你現金流' }
+    key:'政府訂單給您技術，消費市場才給您現金流' }
 ];
 
 const POLL_Q0 = { opts:[
@@ -101,15 +101,15 @@ const QUIZ = [
   { k:'A', t:'自動代操<br><b>每月穩定</b>套利 2%', flags:3,
     why:'「每月」＋「穩定」＋「代操」。這三個詞同時出現，先停下來。' },
   { k:'B', t:'境外年金型商品<br>年配息 9%', flags:1, q:true,
-    why:'不是紅的也不是綠的。差別不在商品，<b>在你有沒有那條渠道</b>。' },
+    why:'不是紅的也不是綠的。差別不在商品，<b>在您有沒有那條渠道</b>。' },
   { k:'C', t:'海外商辦包租<br>年化 17%，綁約 5 年', flags:3,
     why:'報酬最高、標的最遠、綁約最久。三個一起來的時候，通常不是機會。' },
   { k:'D', t:'美元定存<br>年化 3.5%', flags:0, ok:true,
-    why:'最無聊的那一個，也是唯一你今天下午就能查清楚的那一個。' }
+    why:'最無聊的那一個，也是唯一您今天下午就能查清楚的那一個。' }
 ];
 
 const MIRRORS = [
-  ['誰在保管你的錢？', '金流走銀行體系，還是走某個私人帳戶'],
+  ['誰在保管您的錢？', '金流走銀行體系，還是走某個私人帳戶'],
   ['在哪一國、受哪個主管機關監理？', '查得到牌照，才有申訴的地方'],
   ['報酬從哪來？誰在付這個利息？', '說不清楚來源的收益，來源通常是下一個人'],
   ['出場條件是什麼？', '綁約幾年、能不能提前贖回、贖回付多少'],
@@ -131,7 +131,7 @@ const FOUNDERS = {
     hook:'我看過的部位，規模逾千億。<br>所以我很清楚，<br>一般人被騙的話術長什麼樣子。',
     cv:['新光金控 海外投資分析師','全球資產配置 / 宏觀研究','固定收益策略','法人投資經驗，管理資產規模逾千億'] },
   kevin:{ role:'行銷長', nm:'Kevin', co:'優點行銷整合有限公司', axis:2,
-    hook:'我是做行銷的。<br>所以我最清楚什麼叫<br>「很熱鬧，但沒人真的認識你」。',
+    hook:'我是做行銷的。<br>所以我最清楚什麼叫<br>「很熱鬧，但沒人真的認識您」。',
     cv:['師大 衛教 / 企管','品牌行銷','成長策略與市場開發','數位轉型'] }
 };
 
@@ -203,10 +203,10 @@ const SALON6 = [
 
 // 25HRS 微型創投師計劃：四種形式 × 四位講師（v260723 p58 到 p62）
 const PLAN = [
-  { t:'入門講座', h:'2 HRS',            d:'四位講師各講一段，先把全貌給你' },
+  { t:'入門講座', h:'2 HRS',            d:'四位講師各講一段，先把全貌給您' },
   { t:'線上培訓', h:'9 HRS ／ 9 章',    d:'隨時可看，半年內無限免費複訓' },
-  { t:'實戰陪跑', h:'8 HRS／場 × 半年', d:'不是聽課。是帶著你自己的案子一起做' },
-  { t:'顧問諮詢', h:'1 HR × 8 次',      d:'一對一，談的是你自己的公司' }
+  { t:'實戰陪跑', h:'8 HRS／場 × 半年', d:'不是聽課。是帶著您自己的案子一起做' },
+  { t:'顧問諮詢', h:'1 HR × 8 次',      d:'一對一，談的是您自己的公司' }
 ];
 const PLAN_BY = [
   { nm:'Andy',    role:'投資長', img:'andy',
@@ -301,13 +301,13 @@ const AXIS = [
 
 // 引起動機文字雲：全部都是這場後面會被回答的問題（lv 決定字級）
 const CLOUD = [
-  { t:'你缺的不是努力',              lv:3, ax:0 },
+  { t:'您缺的不是努力',              lv:3, ax:0 },
   { t:'馬斯克也拿過政府的錢',        lv:2, ax:1 },
   { t:'台積電近一半是國家出的',      lv:2, ax:1 },
   { t:'戴森被銀行全部拒絕過',        lv:1, ax:1 },
   { t:'青創貸款，一輩子只能拿一次？', lv:2, ax:1 },
   { t:'不缺錢，也該去借',            lv:1, ax:1 },
-  { t:'政府是你最大的客戶',          lv:1, ax:1 },
+  { t:'政府是您最大的客戶',          lv:1, ax:1 },
   { t:'開公司的唯一目的是什麼',      lv:2, ax:1 },
   { t:'有賺錢，帳上卻沒錢',          lv:3, ax:2 },
   { t:'高槓桿＝高風險？',            lv:2, ax:2 },
@@ -359,7 +359,7 @@ const CHARTS = {
     </g>`).join('')}
     <text class="clb clb--sm" x="154" y="222">${a}</text>
     <text class="clb clb--sm clb--lit" x="772" y="22">${b}</text></svg>`,
-  // 逆勢：市場下墜，你上揚
+  // 逆勢：市場下墜，您上揚
   counter: (a, b) => `<svg class="cchart" viewBox="0 0 900 230">
     <path class="caxis" d="M44 202 H880 M44 18 V202"/>
     <path class="cline cline--dim" d="M50 66 L182 36 L284 122 L386 66 L488 152 L600 108 L740 182 L876 198"/>
@@ -401,7 +401,7 @@ function buildCases() {
             </div>`).join('')}
           </div>
           <p class="quote case-key">「${c.key}」</p>
-          ${c.id === 'nvidia' ? '<p class="caption case-seed">這條供應鏈上的專利佈局，等一下有人會從<b class="g">裡面</b>講給你聽。</p>' : ''}
+          ${c.id === 'nvidia' ? '<p class="caption case-seed">這條供應鏈上的專利佈局，等一下有人會從<b class="g">裡面</b>講給您聽。</p>' : ''}
         </div>
       </div>
     </div>`;
@@ -628,7 +628,7 @@ const HANDLERS = {
     };
     set(0);
     if (REDUCED) { set(5); return; }
-    [ [1, 260], [2, 740], [3, 1160], [4, 1580], [5, 2160] ].forEach(([k, ms]) =>
+    [ [1, 120], [2, 400], [3, 640], [4, 880], [5, 1240] ].forEach(([k, ms]) =>
       s._seq.push(setTimeout(() => { if (slides[cur] === s) set(k); }, ms)));
   },
 
@@ -912,7 +912,7 @@ const HANDLERS = {
     s.classList.toggle('show-punch', n >= 5);
   },
 
-  // 誰教你什麼：四位講師 × 四種形式
+  // 誰教您什麼：四位講師 × 四種形式
   planby(s, n) {
     const box = $('#planby', s);
     if (!box.dataset.built) {
@@ -1251,7 +1251,6 @@ if (step >= maxStep(slides[cur])) {
 }
 updateChrome();
 if (AUTO_PAGES.has(cur + 1) && !QS.has('step')) autoPlay(slides[cur]);
-if (slides[cur].dataset.case !== undefined) applyStep(slides[cur], 0);
 
 console.log(`%c25HRS Deck　${slides.length} 頁　│　→ 下一步　← 上一步　O 總覽　B 黑幕　F 全螢幕　R 重置`,
   'color:#d6b16a;font-size:13px');
