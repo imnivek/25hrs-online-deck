@@ -349,7 +349,7 @@
 .qa-faces{display:flex;gap:40px;margin-top:56px;}
 
 /* ---------- 總覽 ---------- */
-.overview{position:fixed;inset:0;background:rgba(5,5,5,.96);z-index:90;
+.overview{position:fixed;inset:0;background:var(--ink-950);z-index:90;
   opacity:0;pointer-events:none;overflow:auto;padding:56px;
   transition:opacity var(--dur-base);}
 .overview.is-open{opacity:1;pointer-events:auto;}
@@ -360,7 +360,8 @@
 .ov-cell:hover{border-color:var(--line);transform:translateY(-3px);}
 .ov-n{font-family:var(--num);font-size:20px;color:var(--gold-700);}
 .ov-t{font-size:15px;line-height:1.5;color:var(--paper-72);min-height:44px;}
-.ov-c{font-size:12px;letter-spacing:.14em;color:var(--paper-46);}
+.ov-c{font-size:12px;letter-spacing:.06em;color:var(--paper-46);white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis;}
 .ovc4,.ovc5,.ovc6{color:var(--gold-500);}
 .ovc7,.ovc8{color:var(--gold-300);}
 

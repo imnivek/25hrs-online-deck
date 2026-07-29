@@ -116,7 +116,8 @@ const MIRRORS = [
   ['「穩定」「保證」「保本」出現幾次？', '出現越多次，越該退一步']
 ];
 
-const CHAPTERS = ['開場','三軸架構','十大案例','Rebecca','Ainstein','定平','信任與圈層','創始夥伴'];
+const CHAPTERS = ['Kevin　開場','Kevin　三種資本','Kevin　十大案例','Rebecca　政府補助',
+  'Ainstein　政策性貸款','Andy　金融素養','Kevin　信任與圈層','Kevin　俱樂部與收單'];
 
 // 四位共同創辦人（職稱與資歷依 v260723 原 PPT）
 const FOUNDERS = {
@@ -1117,8 +1118,20 @@ function drawSeats(svg) {
 
 function buildOverview() {
   const g = $('#ovGrid');
+  const titleOf = s => {
+    // 依序找：主標 → 案例公司名 → 眉標 → 金句，讓總覽每一格都看得出是哪一頁
+    const h = s.querySelector('.d1,.d2,.h1');
+    if (h) return h.textContent;
+    const co = s.querySelector('.case-plate figcaption b');
+    if (co) return '案例　' + co.textContent;
+    const k = s.querySelector('.kicker');
+    if (k) return k.textContent;
+    const q = s.querySelector('.quote');
+    if (q) return q.textContent;
+    return '（過場）';
+  };
   g.innerHTML = slides.map((s, i) => {
-    const t = s.querySelector('.d1,.d2,.h1')?.textContent.trim().slice(0, 18) || '（互動頁）';
+    const t = titleOf(s).replace(/\s+/g, ' ').trim().slice(0, 20);
     const ch = +s.dataset.chap || 1;
     return `<button class="ov-cell" data-go="${i}"><span class="ov-n">${String(i + 1).padStart(2, '0')}</span>
       <span class="ov-t">${t}</span><span class="ov-c ovc${ch}">${CHAPTERS[ch - 1]}</span></button>`;
