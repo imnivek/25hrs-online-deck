@@ -464,6 +464,26 @@ function addFragment() {
   c.classList.remove('pulse'); void c.offsetWidth; c.classList.add('pulse');
 }
 
+/* 自動播頁碼：資訊型頁面，進頁後自己依序鋪開，講者不必點
+   手動頁保留給「停頓本身就是內容」的揭曉、反轉、投票與收單 */
+const AUTO_PAGES = new Set([3,4,6,10,11,12,27,28,35,37,38,42,43,44,45,46,48,53,56,
+  60,61,62,63,64,65,70,71,72,74,75,76,77,79,81,83,84,85,86,92,93,94]);
+const AUTO_GAP = 520;
+
+function clearAuto(s) { (s._auto || []).forEach(clearTimeout); s._auto = []; }
+function autoPlay(s) {
+  clearAuto(s);
+  const max = maxStep(s); if (!max) return;
+  if (REDUCED) { step = max; applyStep(s, max); return; }
+  s._auto = [];
+  for (let k = 1; k <= max; k++)
+    s._auto.push(setTimeout(() => {
+      if (slides[cur] !== s) return;
+      step = k; applyStep(s, k);
+      if (k === max) s._auto = [];
+    }, k * AUTO_GAP));
+}
+
 /* ══════════ 6. 導覽引擎 ══════════ */
 
 let slides = [], cur = 0, step = 0, blackedOut = false;
@@ -472,7 +492,7 @@ let slides = [], cur = 0, step = 0, blackedOut = false;
 const has = (s, k) => s.dataset[k] !== undefined;
 
 // 各互動頁的總步數
-const STEPS = { cloud:1, axisloop:4, case:1, matrix:2, fail:3, rotary:2, iobox:2, stack:4,
+const STEPS = { cloud:1, axisloop:4, case:0, matrix:2, fail:3, rotary:2, iobox:2, stack:4,
   esbi:4, puzzle:4, quiz:5, mirrors:5, fade10:2, recall:3, ladder:6, seats:2,
   poll:2, why:1, whyopen:4, b2g:3, anchor:1, valuestack:5, price:4,
   plan:5, planby:5, year:3, club6:3, salon6:2, tiers:3, countdown:1 };
@@ -498,6 +518,7 @@ function show(i, dir = 1) {
   if (prev && prev !== next) {
     if (prev.dataset.video !== undefined) stopVideo(prev);
     (prev._seq || []).forEach(clearTimeout); prev._seq = [];
+    clearAuto(prev);
     prev.classList.add('slide--out');
     setTimeout(() => { prev.classList.remove('is-active', 'slide--out'); }, REDUCED ? 60 : 240);
   }
@@ -506,6 +527,7 @@ function show(i, dir = 1) {
     setTimeout(() => next.classList.remove('slide--in'), 700);
     cur = i; step = 0; applyStep(next, 0); updateChrome();
     if (next.dataset.sweep !== undefined && !REDUCED) runSweep();
+    if (AUTO_PAGES.has(i + 1)) autoPlay(next);
   };
 
   if (chapChanged && !REDUCED) { setTimeout(enter, 180); }
@@ -532,6 +554,9 @@ function runSweep() {
 
 function next() {
   const s = slides[cur];
+  if (s._auto && s._auto.length) {          // 自動播still跑著：一鍵跳到終態
+    clearAuto(s); step = maxStep(s); applyStep(s, step); return;
+  }
   if (step < maxStep(s)) { step++; applyStep(s, step); }
   else if (cur < slides.length - 1) show(cur + 1, 1);
 }
@@ -592,7 +617,8 @@ const HANDLERS = {
   },
 
   // 案例頁：按一次就自動依序彈出（數字圖表 → 三軸 → 金句），不需要一直點
-  case(s, n) {
+  // 案例頁：一進頁就自動依序彈出，講者完全不必點；→ 直接翻下一頁
+  case(s) {
     (s._seq || []).forEach(clearTimeout); s._seq = [];
     const axes = $$('.axis', s);
     const set = k => {
@@ -600,11 +626,10 @@ const HANDLERS = {
       axes.forEach((a, i) => a.classList.toggle('is-on', i < k - 1));
       s.classList.toggle('show-key', k >= 5);
     };
-    if (n < 1) { set(0); return; }
+    set(0);
     if (REDUCED) { set(5); return; }
-    set(1);
-    [ [1, 480], [2, 900], [3, 1320], [4, 1900] ].forEach(([step, ms]) =>
-      s._seq.push(setTimeout(() => set(step + 1), ms)));
+    [ [1, 260], [2, 740], [3, 1160], [4, 1580], [5, 2160] ].forEach(([k, ms]) =>
+      s._seq.push(setTimeout(() => { if (slides[cur] === s) set(k); }, ms)));
   },
 
   matrix(s, n) {
@@ -1225,6 +1250,8 @@ if (step >= maxStep(slides[cur])) {
   fragments = Math.min(upto, FRAG_TOTAL); drawClock($('#clock'), fragments);
 }
 updateChrome();
+if (AUTO_PAGES.has(cur + 1) && !QS.has('step')) autoPlay(slides[cur]);
+if (slides[cur].dataset.case !== undefined) applyStep(slides[cur], 0);
 
 console.log(`%c25HRS Deck　${slides.length} 頁　│　→ 下一步　← 上一步　O 總覽　B 黑幕　F 全螢幕　R 重置`,
   'color:#d6b16a;font-size:13px');
