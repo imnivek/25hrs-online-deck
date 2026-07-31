@@ -234,7 +234,7 @@ const TIERS = [
 const PRICE = [
   { lb:'菁英方案 ELITE 12HRS',   n:39800, cut:true },
   { lb:'尊榮方案 PREMIUM 25HRS', n:88800, cut:true },
-  { lb:'本場限定．封測創始夥伴價', n:12800, cut:false }
+  { lb:'本場限定．封測創始夥伴價', n:16800, cut:false }
 ];
 
 /* ══════════ 2. 肖像徽章（自繪 SVG，同一幾何基底＋各人識別特徵） ══════════ */
