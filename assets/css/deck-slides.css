@@ -364,6 +364,13 @@
   overflow:hidden;text-overflow:ellipsis;}
 .ovc4,.ovc5,.ovc6{color:var(--gold-500);}
 .ovc7,.ovc8{color:var(--gold-300);}
+.ovw-rebecca{color:var(--gold-500);}
+.ovw-ainstein{color:var(--gold-300);}
+.ovw-andy{color:var(--jade,#8fb08a);}
+.ovw-kevin{color:var(--gold-700);}
+.ov-hd{display:flex;align-items:baseline;gap:16px;margin:0 0 22px;}
+.ov-hd b{font-family:var(--serif);font-size:26px;color:var(--paper);}
+.ov-hd span{font-size:14px;letter-spacing:.1em;color:var(--paper-46);}
 
 /* ---------- 減量模式 ---------- */
 @media (prefers-reduced-motion: reduce){
@@ -885,20 +892,22 @@
   filter:drop-shadow(0 6px 26px rgba(0,0,0,.6));}
 
 /* ---------- 實體場：十大案例一頁版 ---------- */
-.c10grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px 14px;width:100%;}
+.c10grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px 18px;
+  width:100%;max-width:1130px;margin-inline:auto;}
 .c10{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line-soft);
   background:var(--surface);opacity:0;transform:translateY(14px);
   transition:all var(--dur-base) var(--ease-out);}
 .c10.is-on{opacity:1;transform:none;}
-.c10 img{width:100%;height:118px;object-fit:cover;object-position:top center;display:block;}
-.c10 figcaption{padding:8px 10px 10px;text-align:center;}
-.c10 figcaption b{display:block;font-family:var(--serif);font-size:21px;color:var(--paper);line-height:1.2;}
-.c10 figcaption span{display:block;margin-top:2px;font-size:15px;letter-spacing:.12em;color:var(--paper-46);}
+.c10 img{width:100%;aspect-ratio:1/1;height:auto;object-fit:cover;
+  object-position:center 25%;display:block;}
+.c10 figcaption{padding:6px 8px 8px;text-align:center;}
+.c10 figcaption b{display:block;font-family:var(--serif);font-size:20px;color:var(--paper);line-height:1.2;}
+.c10 figcaption span{display:block;margin-top:1px;font-size:13px;letter-spacing:.12em;color:var(--paper-46);}
 .c10 figcaption i{display:block;margin-top:5px;font-style:normal;font-family:var(--num);
   font-size:18px;color:var(--gold-300);}
 .c10concl{opacity:0;transform:translateY(14px);transition:all var(--dur-base) var(--ease-out);}
 .show-concl .c10concl{opacity:1;transform:none;}
-.c10concl .quote{font-size:21px;line-height:1.45;padding:8px 16px;
+.mini .c10concl .quote,.c10concl .quote{font-size:22px;line-height:1.45;padding:6px 16px;
   border-left:3px solid var(--gold-500);}
 
 /* ---------- 實體場：服務清單矩陣 ---------- */

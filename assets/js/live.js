@@ -146,7 +146,7 @@ function drawCloud(box, s, n) {
 function drawCases(box, s, n) {
   if (!box.dataset.built) { box.dataset.built = 1;
     box.innerHTML = CASES10.map(c => `<figure class="c10">
-      <img src="assets/img/cases/${c.id}.webp" alt="${c.p}">
+      <img src="assets/img/cases/head/${c.id}.webp" alt="${c.p}">
       <figcaption><b>${c.p}</b><span>${c.co}</span><i>${c.n}</i></figcaption></figure>`).join(''); }
   $$('.c10', box).forEach((c, i) =>
     setTimeout(() => c.classList.toggle('is-on', n >= 1), n >= 1 ? i * 90 : 0));
@@ -283,20 +283,50 @@ function prev() {
   else if (cur > 0) { show(cur - 1); const p = slides[cur]; clearAuto(p); step = maxStep(p); applyStep(p, step); }
 }
 
+
+/* ══════════ 全瀏覽選頁 ══════════ */
+const OVW = { kevin:'KEVIN　主持與圈層', rebecca:'REBECCA　政府補助',
+  ainstein:'AINSTEIN　政策性貸款', andy:'ANDY　金融素養' };
+function buildOv() {
+  const g = $('#ovGrid');
+  const titleOf = s => {
+    const h = s.querySelector('.d1,.d2,.h1'); if (h) return h.textContent;
+    const k = s.querySelector('.kicker');     if (k) return k.textContent;
+    const q = s.querySelector('.quote');      if (q) return q.textContent;
+    return '（過場）';
+  };
+  g.innerHTML = slides.map((s, i) => {
+    const t = titleOf(s).replace(/\s+/g, ' ').trim().slice(0, 20);
+    const w = s.dataset.who || '';
+    return `<button class="ov-cell" data-go="${i}"><span class="ov-n">${String(i + 1).padStart(2, '0')}</span>
+      <span class="ov-t">${t}</span><span class="ov-c ovw-${w}">${OVW[w] || '全場'}</span></button>`;
+  }).join('');
+  g.onclick = e => { const b = e.target.closest('[data-go]'); if (!b) return;
+    toggleOv(false); show(+b.dataset.go); };
+}
+function toggleOv(on) {
+  const o = $('#overview');
+  if (!o.dataset.built) { o.dataset.built = 1; buildOv(); }
+  o.classList.toggle('is-open', on === undefined ? !o.classList.contains('is-open') : on);
+}
+
 addEventListener('keydown', e => {
+  if (e.key === 'Escape') { toggleOv(false); return; }
+  if ($('#overview').classList.contains('is-open')) return;
   switch (e.key) {
     case 'ArrowRight': case ' ': case 'PageDown': e.preventDefault(); next(); break;
     case 'ArrowLeft':  case 'PageUp':            e.preventDefault(); prev(); break;
     case 'ArrowDown':  e.preventDefault(); show(cur + 1); break;
     case 'ArrowUp':    e.preventDefault(); show(cur - 1); break;
     case 'f': case 'F': document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen(); break;
+    case 'o': case 'O': toggleOv(); break;
     case 'r': case 'R': step = 0; applyStep(slides[cur], 0); break;
     default: if (/^[1-9]$/.test(e.key)) show(+e.key - 1);
   }
 });
 $('#pbar').onclick = e => {
   const b = e.target.closest('[data-nav]'); if (!b) return;
-  ({ prev, next, full: () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen() })[b.dataset.nav]();
+  ({ prev, next, overview: () => toggleOv(), full: () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen() })[b.dataset.nav]();
 };
 let hideT;
 addEventListener('mousemove', () => { $('#pbar').classList.add('is-visible');
@@ -322,7 +352,7 @@ step = QS.has('step') ? Math.min(+QS.get('step'), maxStep(slides[cur])) : 0;
 applyStep(slides[cur], step);
 chrome();
 if (AUTO.has(cur + 1) && !QS.has('step')) autoPlay(slides[cur]);
-window.__applyStep = applyStep; window.__maxStep = maxStep;
+window.__applyStep = applyStep; window.__maxStep = maxStep; window.__ov = toggleOv;
 console.log('%c25HRS 實體場　29 頁　│　→ 下一步　← 上一步　F 全螢幕　R 重置',
   'color:#d6b16a;font-size:13px');
 })();
