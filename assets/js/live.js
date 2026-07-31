@@ -184,8 +184,9 @@ const H = {
   tables(s, n) { drawTables($('#tables', s), s, n); },
   tables2(s, n) { drawTables($('#tables2', s), s, n); },
   flip(s, n) {
-    $$('.myth', s).forEach((m, i) => m.classList.toggle('is-flipped', i < n));
+    // 第 1 步只把三張卡（正面）亮出來，第 2 步起才逐張翻
     s.classList.toggle('show-punch', n >= 1);
+    $$('.myth', s).forEach((m, i) => m.classList.toggle('is-flipped', i < n - 1));
   },
 
   quiz(s, n) {
@@ -259,10 +260,33 @@ function chrome() {
   $('#pgN').textContent = String(cur + 1).padStart(2, '0');
 }
 
+/* ── 影片：點哪一支播哪一支，離開頁面就收掉 ── */
+function playVideo(box) {
+  const id = box.dataset.vid; if (!id) return;
+  if (!box.dataset.ph) box.dataset.ph = box.innerHTML;
+  if (box.dataset.loaded === id) return;
+  box.dataset.loaded = id;
+  box.innerHTML =
+    `<iframe src="https://www.youtube.com/embed/${id}?rel=0&modestbranding=1&playsinline=1&autoplay=1"
+       title="25HRS" frameborder="0"
+       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+       referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+     <a class="vopen" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">在 YouTube 開啟</a>`;
+}
+function stopVideo(slide) {
+  $$('.videobox', slide).forEach(box => {
+    if (box.dataset.loaded) { box.innerHTML = box.dataset.ph || ''; box.dataset.loaded = ''; }
+  });
+}
+document.addEventListener('click', e => {
+  const box = e.target.closest('.videobox');
+  if (box) playVideo(box);
+});
+
 function show(i) {
   if (i < 0 || i >= slides.length) return;
   const prev = slides[cur], next = slides[i];
-  if (prev !== next) { clearAuto(prev); prev.classList.remove('is-active'); }
+  if (prev !== next) { clearAuto(prev); stopVideo(prev); prev.classList.remove('is-active'); }
   if (!REDUCED && prev !== next) {
     const w = $('#wipe'); w.classList.remove('is-running'); void w.offsetWidth; w.classList.add('is-running');
   }
@@ -332,7 +356,7 @@ let hideT;
 addEventListener('mousemove', () => { $('#pbar').classList.add('is-visible');
   clearTimeout(hideT); hideT = setTimeout(() => $('#pbar').classList.remove('is-visible'), 2000); });
 stage.addEventListener('click', e => {
-  if (e.target.closest('.btn, .myth, .qcard, a')) return; next();
+  if (e.target.closest('.btn, .myth, .qcard, iframe, .videobox, .vpair, a')) return; next();
 });
 addEventListener('click', e => {
   const btn = e.target.closest('.btn'); if (!btn || btn.disabled) return;
