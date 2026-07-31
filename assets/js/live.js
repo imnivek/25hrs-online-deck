@@ -15,6 +15,42 @@ const WHO = {
   andy:    { nm:'ANDY',     role:'投資長',  img:'andy' }
 };
 
+
+// 引起動機文字雲：每一句今天都會被回答
+const CLOUD = [
+  { t:'您缺的不是努力',              lv:3, ax:0 },
+  { t:'馬斯克也拿過政府的錢',        lv:2, ax:1 },
+  { t:'台積電近一半是國家出的',      lv:2, ax:1 },
+  { t:'戴森被銀行全部拒絕過',        lv:1, ax:1 },
+  { t:'青創貸款，一輩子只能拿一次？', lv:2, ax:1 },
+  { t:'不缺錢，也該去借',            lv:1, ax:1 },
+  { t:'政府是您最大的客戶',          lv:1, ax:1 },
+  { t:'開公司的唯一目的是什麼',      lv:2, ax:1 },
+  { t:'有賺錢，帳上卻沒錢',          lv:3, ax:2 },
+  { t:'高槓桿＝高風險？',            lv:2, ax:2 },
+  { t:'9% 配息，是機會還是陷阱',     lv:2, ax:2 },
+  { t:'最危險的是看起來像機會的',    lv:1, ax:2 },
+  { t:'老闆的錢跟公司的錢',          lv:1, ax:2 },
+  { t:'他們找夥伴的方式不一樣',      lv:3, ax:3 },
+  { t:'換了幾百張名片，然後呢',      lv:2, ax:3 },
+  { t:'不擅長社交就沒救了嗎',        lv:1, ax:3 },
+  { t:'把半條命交給對手',            lv:1, ax:3 }
+];
+
+// 十大案例一頁版
+const CASES10 = [
+  { id:'nvidia',  p:'黃仁勳',       co:'NVIDIA',   n:'$40K 起家' },
+  { id:'tsmc',    p:'張忠謀',       co:'台積電',    n:'國發基金 48%' },
+  { id:'spacex',  p:'伊隆·馬斯克',  co:'SpaceX',   n:'$396M 里程碑補助' },
+  { id:'dyson',   p:'詹姆士·戴森',  co:'Dyson',    n:'政府擔保貸款' },
+  { id:'airbnb',  p:'布萊恩·切斯基', co:'Airbnb',  n:'$2B 緊急重組' },
+  { id:'tesla',   p:'伊隆·馬斯克',  co:'Tesla',    n:'$465M 政府貸款' },
+  { id:'alibaba', p:'馬雲',         co:'Alibaba',  n:'引入 CFO 立紀律' },
+  { id:'tencent', p:'馬化騰',       co:'Tencent',  n:'轉向資本配置' },
+  { id:'moderna', p:'史蒂芬·班塞爾', co:'Moderna', n:'無稀釋性資本' },
+  { id:'irobot',  p:'柯林·安格爾',  co:'iRobot',   n:'SBIR 國防補助' }
+];
+
 // 四桌分群：階段 → 需求 → 對應工具 → 陪談的創辦人
 const TABLES = [
   { no:'桌 01', who:'想創業，還沒創業', need:'先把資本結構架好，再開始燒錢',
@@ -56,7 +92,7 @@ const slides = $$('.slide');
 let cur = 0, step = 0;
 
 const has = (s, k) => s.dataset[k] !== undefined;
-const STEPS = { flip:4, quiz:5, mirrors:5, offer:1, tables:2, tables2:2 };
+const STEPS = { flip:4, quiz:5, mirrors:5, offer:1, tables:2, tables2:2, cloud:1, cases10:2 };
 function maxStep(s) {
   if (has(s, 'flip')) return 4;
   for (const k in STEPS) if (has(s, k)) return STEPS[k];
@@ -79,7 +115,30 @@ function drawTables(box, s, n) {
   s.classList.toggle('show-punch', n >= 2);
 }
 
+function drawCloud(box, s, n) {
+  if (!box.dataset.built) { box.dataset.built = 1;
+    box.innerHTML = CLOUD.map(c => `<span class="cw cw--l${c.lv} cw--a${c.ax}">${c.t}</span>`).join(''); }
+  (s._seq || []).forEach(clearTimeout); s._seq = [];
+  const items = $$('.cw', box);
+  if (n < 1) { items.forEach(x => x.classList.remove('is-on')); s.classList.remove('show-punch'); return; }
+  if (REDUCED) { items.forEach(x => x.classList.add('is-on')); s.classList.add('show-punch'); return; }
+  items.forEach((x, i) => s._seq.push(setTimeout(() => x.classList.add('is-on'), 80 + i * 120)));
+  s._seq.push(setTimeout(() => s.classList.add('show-punch'), 80 + items.length * 120 + 400));
+}
+
+function drawCases(box, s, n) {
+  if (!box.dataset.built) { box.dataset.built = 1;
+    box.innerHTML = CASES10.map(c => `<figure class="c10">
+      <img src="assets/img/cases/${c.id}.webp" alt="${c.p}">
+      <figcaption><b>${c.p}</b><span>${c.co}</span><i>${c.n}</i></figcaption></figure>`).join(''); }
+  $$('.c10', box).forEach((c, i) =>
+    setTimeout(() => c.classList.toggle('is-on', n >= 1), n >= 1 ? i * 90 : 0));
+  s.classList.toggle('show-concl', n >= 2);
+}
+
 const H = {
+  cloud(s, n) { drawCloud($('#cloud', s), s, n); },
+  cases10(s, n) { drawCases($('#cases10', s), s, n); },
   tables(s, n) { drawTables($('#tables', s), s, n); },
   tables2(s, n) { drawTables($('#tables2', s), s, n); },
   flip(s, n) {
@@ -137,7 +196,7 @@ function applyStep(s, n) {
 }
 
 /* 資訊型頁面進頁自動鋪開；提問、翻卡、測驗、收單留給講者控節奏 */
-const AUTO = new Set([2, 3, 6, 7, 8, 11, 12, 13, 17, 21, 22, 23, 24]);
+const AUTO = new Set([3, 4, 8, 9, 10, 13, 14, 15, 19, 23, 24, 25, 26]);
 function clearAuto(s) { (s._auto || []).forEach(clearTimeout); s._auto = []; }
 function autoPlay(s) {
   clearAuto(s); const m = maxStep(s); if (!m) return;
@@ -222,6 +281,6 @@ applyStep(slides[cur], step);
 chrome();
 if (AUTO.has(cur + 1) && !QS.has('step')) autoPlay(slides[cur]);
 window.__applyStep = applyStep; window.__maxStep = maxStep;
-console.log('%c25HRS 實體場　25 頁　│　→ 下一步　← 上一步　F 全螢幕　R 重置',
+console.log('%c25HRS 實體場　27 頁　│　→ 下一步　← 上一步　F 全螢幕　R 重置',
   'color:#d6b16a;font-size:13px');
 })();
