@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>25HRS 線上分享會｜精簡版 12 頁</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;600;700&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/25hrs-deck.css">
+<link rel="stylesheet" href="assets/css/deck-slides.css">
+<style>
+  /* 精簡版專用：每頁都要撐滿，字級整體放大一級 */
+  .mini .slide-in{top:150px;bottom:112px;}
+  .who{position:absolute;left:var(--safe-x);top:var(--safe-y);display:flex;align-items:center;gap:18px;z-index:6;}
+  .who img{width:56px;height:56px;object-fit:contain;}
+  .who b{font-size:22px;letter-spacing:.36em;color:var(--gold-500);}
+  .who span{display:block;margin-top:5px;font-size:15px;letter-spacing:.24em;color:var(--paper-46);}
+  .pg{position:absolute;right:var(--safe-x);top:var(--safe-y);font-family:var(--num);
+    font-size:24px;letter-spacing:.14em;color:var(--gold-500);z-index:6;}
+  .pg small{color:var(--paper-46);}
+  .mini .d1{font-size:88px;} .mini .h1{font-size:62px;} .mini .quote{font-size:44px;}
+  .mini .kicker{font-size:21px;}
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;width:100%;}
+  .tri{padding:34px 30px;border:1px solid var(--line);border-radius:var(--radius);
+    background:var(--surface-gold);text-align:center;}
+  .tri .big{margin-top:14px;font-family:var(--serif);font-size:52px;color:var(--gold-300);letter-spacing:.14em;}
+  .tri .sub{margin-top:8px;font-family:var(--serif);font-size:28px;color:var(--paper);}
+  .tri .desc{margin-top:12px;font-size:20px;line-height:1.65;color:var(--paper-46);}
+  .facts{display:flex;flex-direction:column;gap:12px;margin-top:26px;width:100%;}
+  .fact{display:grid;grid-template-columns:64px 1fr;gap:22px;align-items:center;
+    padding:14px 26px;border:1px solid var(--line-hair);border-radius:var(--radius-sm);
+    background:var(--surface);text-align:left;}
+  .fact b{font-family:var(--num);font-size:34px;color:var(--gold-300);}
+  .fact span{font-size:23px;color:var(--paper-72);}
+  .mini .myths{gap:34px;}
+  .mini .myth{width:430px;height:290px;}
+  .mini .myth .front{font-size:29px;}
+  .mini .myth .back .fix{font-size:20px;}
+  .kill{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;width:100%;}
+  .mini .qcard{min-height:300px;}
+  .mini .mirror{padding:14px 30px;}
+  .mini .mirror .h3{font-size:27px;}
+  .cta2{display:flex;gap:28px;margin-top:32px;}
+  .offer2{display:grid;grid-template-columns:1fr 300px;gap:60px;align-items:center;width:100%;max-width:1240px;}
+  .lastrow{display:flex;gap:44px;align-items:center;justify-content:center;margin-top:18px;}
+  .mini .op-now{font-size:104px;}
+  .mini .qr--lg img{width:280px;height:280px;}
+  .mini .qr--sm img{width:120px;height:120px;}
+  .mini .countdown{margin-top:20px;}
+</style>
+</head>
+<body class="mini">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<g id="i19"><path d="M4 3.5h8v17H4z"/><path d="M12 7.5l4-2.2v13.4l-4-2.2"/><rect x="15.5" y="9.5" width="5" height="5" rx=".6" transform="rotate(12 18 12)"/><path d="M15.5 19.5c1.6-1.4 3.4-1.4 5.2 0"/></g>
+<g id="i20"><circle cx="11" cy="13" r="6.5"/><circle cx="11" cy="13" r="2"/><path d="M11 4.5v2M11 19.5v2M2.5 13h2M17.5 13h2M5.2 7.2l1.4 1.4M15.4 17.4l1.4 1.4M16.8 7.2l-1.4 1.4M6.6 17.4l-1.4 1.4"/><path d="M17.5 8.5C19.5 6.5 20.5 4.5 21 2.5"/></g>
+<g id="i21"><circle cx="8.6" cy="12" r="6.4"/><circle cx="15.4" cy="12" r="6.4"/></g>
+<g id="i18"><circle cx="12" cy="12" r="9"/><path d="M12 7v6"/><path d="M12 16.4v.2"/></g>
+<g id="ix"><path d="M5 5l14 14M19 5L5 19"/></g>
+<g id="ick"><path d="M4 12.5l5.5 5.5L20 6.5"/></g>
+<g id="iflag"><path d="M6 21.5V2.5"/><path d="M6 3.5l12.5 4L6 11.5z"/></g>
+<g id="iq"><circle cx="12" cy="12" r="9"/><path d="M9.3 9.3a2.8 2.8 0 015.4 1c0 1.9-2.7 2.3-2.7 4"/><path d="M12 17.4v.2"/></g>
+</defs></svg>
+
+<div class="stage-wrap"><div class="stage" id="stage">
+  <div class="who" id="who"></div>
+  <div class="pg"><span id="pgN">01</span><small> / 12</small></div>
+  <div class="wipe" id="wipe"></div>
+
+  <div class="slides" id="slides">
+
+  <!-- ══ Kevin 1 ══ -->
+  <section class="slide" data-who="kevin" data-poll>
+    <div class="slide-in v-center">
+      <span class="kicker">開場．請直接在聊天室打 A 到 D</span>
+      <h2 class="h1" style="margin-top:16px">您現在最缺的，是什麼？</h2>
+      <div class="poll" id="poll" style="margin-top:40px;width:100%;max-width:1200px"></div>
+      <p class="quote poll-punch" style="margin-top:36px">這四個看起來是四件事，<br><span class="g">其實都缺同一樣東西</span>。</p>
+    </div>
+  </section>
+
+  <!-- ══ Kevin 2 ══ -->
+  <section class="slide" data-who="kevin" data-steps="4">
+    <div class="slide-in v-center">
+      <span class="kicker">十家世界級企業，一個共同點</span>
+      <h2 class="h1" style="margin-top:14px">企業主的<span class="g">三種資本</span></h2>
+      <div class="three reveal" data-step="1" style="margin-top:32px">
+        <div class="tri"><svg class="ic ic-48" viewBox="0 0 24 24"><use href="#i19"/></svg><div class="big">資源</div><div class="sub">拿得到</div><div class="desc">錢與資源，您進得去那道門嗎</div></div>
+        <div class="tri"><svg class="ic ic-48" viewBox="0 0 24 24"><use href="#i20"/></svg><div class="big">財商</div><div class="sub">用得對</div><div class="desc">錢進來以後，您駕不駕得住</div></div>
+        <div class="tri"><svg class="ic ic-48" viewBox="0 0 24 24"><use href="#i21"/></svg><div class="big">信任</div><div class="sub">走得遠</div><div class="desc">誰願意把身家交到您手上</div></div>
+      </div>
+      <div class="facts">
+        <div class="fact reveal" data-step="2"><b>7/10</b><span>起步資金來自政府補助、政策性貸款或競賽型獎金</span></div>
+        <div class="fact reveal" data-step="3"><b>10/10</b><span>都經歷過一次現金流瀕死，靠重建財務紀律活下來</span></div>
+        <div class="fact reveal" data-step="4"><b>10/10</b><span>都用「制度」而不是「交情」建立信任</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ Rebecca 1：核心提問 ══ -->
+  <section class="slide" data-who="rebecca" data-flip="3">
+    <div class="slide-in v-center">
+      <span class="kicker">WHY</span>
+      <h2 class="d1" style="margin-top:20px">政府每年編幾百億補助預算。<br><span class="g">為什麼您一次都沒拿到過？</span></h2>
+      <div class="myths flip-punch" style="margin-top:36px">
+        <div class="myth"><div class="inner">
+          <div class="face front">「補助案不就是找人<br>寫一寫、丟出去就會過？」</div>
+          <div class="face back back--no"><svg class="ic ic-40 ic--clay" viewBox="0 0 24 24"><use href="#ix"/></svg><div class="fix">決勝的不是文筆，是<b class="g">還沒動筆之前</b>的三件事：計畫站不站得住、您執行得了嗎、商業價值講不講得清楚。</div></div>
+        </div></div>
+        <div class="myth"><div class="inner">
+          <div class="face front">「政府給的錢，<br>應該不用自己出吧？」</div>
+          <div class="face back back--no"><svg class="ic ic-40 ic--clay" viewBox="0 0 24 24"><use href="#ix"/></svg><div class="fix">自籌配合款 ＋ 分期核撥 ＋ 核銷後撥付。<b class="g">拿補助，本身就是一場現金流的考驗。</b></div></div>
+        </div></div>
+        <div class="myth"><div class="inner">
+          <div class="face front">「代辦跟顧問<br>不都一樣？誰便宜找誰。」</div>
+          <div class="face back back--no"><svg class="ic ic-40 ic--clay" viewBox="0 0 24 24"><use href="#ix"/></svg><div class="fix">代辦交付一份文件，陪跑交付一個<b class="g">執行得完的計畫</b>。差別在送件之後：查核、核銷、變更、結案。</div></div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ Rebecca 2 ══ -->
+  <section class="slide" data-who="rebecca" data-steps="3">
+    <div class="slide-in">
+      <span class="kicker">跟坊間的補助案寫手，差在哪</span>
+      <h2 class="h1" style="margin-top:12px">同樣一件事，<span class="g">兩種收費結構</span></h2>
+      <div class="vsgrid" style="margin-top:30px">
+        <div class="vhead"></div><div class="vhead">坊間寫手</div><div class="vhead vhead--mine">25HRS CLUB</div>
+        <div class="vstage reveal" data-step="1">提案</div>
+        <div class="vcell reveal" data-step="1">先收開案費 <b class="clay">8 到 15 萬</b><br>不能幫您去簡報</div>
+        <div class="vcell vcell--mine reveal" data-step="1"><b class="g">不收開案費</b><br>成為委外商，陪您一起簡報</div>
+        <div class="vstage reveal" data-step="2">執行</div>
+        <div class="vcell reveal" data-step="2">不能成為委外商<br>幫您執行</div>
+        <div class="vcell vcell--mine reveal" data-step="2">成為您的委外商<br><b class="g">幫您做數位轉型</b></div>
+        <div class="vstage reveal" data-step="3">核銷</div>
+        <div class="vcell reveal" data-step="3">後收結案費 <b class="clay">15 到 30%</b><br>寫手委託費<b class="clay">無法核銷</b></div>
+        <div class="vcell vcell--mine reveal" data-step="3">透過補助案的<b class="g">委外費</b>支付<br>讓您順利完成核銷</div>
+      </div>
+      <div class="compliance" style="margin-top:22px"><svg class="ic ic--clay" viewBox="0 0 24 24" width="24" height="24"><use href="#i18"/></svg><span>本內容為教育培訓與顧問賦能，不代表任何補助核准或獲利之保證。費用結構依實際簽約內容為準。</span></div>
+    </div>
+  </section>
+
+  <!-- ══ Rebecca 3：收束 ══ -->
+  <section class="slide" data-who="rebecca" data-steps="2">
+    <div class="slide-in v-center">
+      <span class="kicker">資源．這一關的重點</span>
+      <h2 class="d1" style="margin-top:24px">政府補助<br><span class="g">不是伸手要錢</span></h2>
+      <p class="quote reveal" data-step="2" style="margin-top:44px">是讓<span class="g">最挑剔的那個客戶</span>，<br>先替您的商業模式背書。</p>
+    </div>
+  </section>
+
+  <!-- ══ Ainstein 1：核心提問 ══ -->
+  <section class="slide" data-who="ainstein" data-kill>
+    <div class="slide-in v-center">
+      <span class="kicker">WHY</span>
+      <h2 class="d1" style="margin-top:20px">您當初，<span class="g">為什麼要開公司？</span></h2>
+      <p class="small" style="margin-top:20px;color:var(--paper-46)">大部分人的答案，是下面這三個</p>
+      <div class="kill" style="margin-top:34px">
+        <div class="card wo-card"><div class="h3" style="font-size:36px">合法賣東西？</div></div>
+        <div class="card wo-card"><div class="h3" style="font-size:36px">開發票？</div></div>
+        <div class="card wo-card"><div class="h3" style="font-size:36px">節稅？</div></div>
+      </div>
+      <p class="quote wo-punch" style="margin-top:40px">這些都做得到，<br>但都<span class="g">不是開公司真正的價值</span>。</p>
+    </div>
+  </section>
+
+  <!-- ══ Ainstein 2 ══ -->
+  <section class="slide" data-who="ainstein" data-steps="4">
+    <div class="slide-in v-center">
+      <span class="kicker">開公司的唯一目的</span>
+      <h2 class="d1" style="margin-top:16px"><span class="g-underline">槓桿銀行和政府</span></h2>
+      <div class="three reveal" data-step="2" style="margin-top:38px">
+        <div class="tri"><div class="loan-k">青創</div><div class="sub" style="margin-top:16px">青年創業及啟動金貸款</div><div class="desc">青年創業者</div></div>
+        <div class="tri"><div class="loan-k">鳳凰</div><div class="sub" style="margin-top:16px">微型創業鳳凰貸款</div><div class="desc">中高齡，或負擔家庭照顧責任的二度就業創業者</div></div>
+        <div class="tri"><div class="loan-k">中小微</div><div class="sub" style="margin-top:16px">中小微企業多元發展專案貸款</div><div class="desc">一般中小微型企業的周轉與設備資金</div></div>
+      </div>
+      <p class="body reveal" data-step="3" style="margin-top:26px">三種政策性貸款，各有對應族群。<b class="g">不是哪個好，是哪個是您。</b></p>
+      <div class="compliance reveal" data-step="4" style="margin-top:20px"><svg class="ic ic--clay" viewBox="0 0 24 24" width="24" height="24"><use href="#i18"/></svg><span>各項貸款之資格、額度、利率與年限依主管機關公告為準，本內容為教育培訓與顧問賦能，不代表任何核准之保證。</span></div>
+    </div>
+  </section>
+
+  <!-- ══ Ainstein 3：收束 ══ -->
+  <section class="slide" data-who="ainstein" data-steps="3">
+    <div class="slide-in v-center">
+      <h2 class="d1"><span class="g">銀行不會借錢給沒錢的人。</span></h2>
+      <p class="lead reveal" data-step="1" style="margin-top:36px">所以即使您現在不缺資金，也建議申請。</p>
+      <div class="row-2 reveal" data-step="2" style="margin-top:30px;max-width:1200px">
+        <div class="card"><p class="body">用低利率甚至零利率的資金，<b class="g">加強營運彈性</b></p></div>
+        <div class="card card--accent"><p class="body">透過銀行端公正客觀的立場，<b class="g">幫您檢視與優化商業模式</b></p></div>
+      </div>
+      <p class="quote reveal" data-step="3" style="margin-top:36px">申請貸款這件事，本身就是一次<br><span class="g">免費的商業模式健檢</span>。</p>
+    </div>
+  </section>
+
+  <!-- ══ Andy 1：核心提問 ══ -->
+  <section class="slide" data-who="andy" data-quiz>
+    <div class="slide-in">
+      <span class="kicker">WHY．請在聊天室打 A 到 D</span>
+      <h2 class="h1" style="margin-top:12px">下面哪一個，<span class="g">最危險？</span></h2>
+      <div class="quizgrid" id="quiz" style="margin-top:32px"></div>
+      <p class="quote quiz-punch" style="margin-top:26px;text-align:center">最危險的，從來不是看起來像詐騙的那一個。<br><span class="g">是看起來像機會的那一個。</span></p>
+      <div class="edu-mark">本頁為金融素養教育之情境示例，不指涉任何特定商品、機構或個人，亦不構成投資建議或招攬。</div>
+    </div>
+  </section>
+
+  <!-- ══ Andy 2 ══ -->
+  <section class="slide" data-who="andy" data-steps="4">
+    <div class="slide-in v-center">
+      <span class="kicker">同一張保單，兩種做法</span>
+      <h2 class="h1" style="margin-top:12px">差的不是商品，<span class="g">是那條銀行渠道</span></h2>
+      <div class="finrow reveal" data-step="1" style="margin-top:28px;width:100%;max-width:1400px">
+        <div class="fin"><div class="fin-h">不融資</div>
+          <ul class="fin-l"><li><span>總保費</span><b>$20 萬</b></li><li><span>每年淨收益</span><b>$8,204</b></li></ul>
+          <div class="fin-r">4.1<small>%</small></div><div class="fin-rn">年化配息率</div></div>
+        <div class="fin fin--lit"><div class="fin-h">搭配銀行保費融資</div>
+          <ul class="fin-l"><li><span>總保費</span><b>$50 萬</b></li><li><span>自付首期</span><b>$20 萬</b></li><li><span>每年淨收益</span><b>$18,620</b></li></ul>
+          <div class="fin-r">9.31<small>%</small></div><div class="fin-rn">年化配息率</div></div>
+        <div class="fin fin--sum"><div class="fin-h">同樣自付 20 萬</div><div class="fin-x">2.27<small>倍</small></div>
+          <p class="fin-note">每年多領<br><b class="g">$10,416</b></p></div>
+      </div>
+      <p class="quote reveal" data-step="3" style="margin-top:24px;font-size:36px">一般人看到的是商品。<br><span class="g">有門道的人看到的是資金結構。</span></p>
+      <div class="compliance reveal" data-step="4" style="margin-top:18px"><svg class="ic ic--clay" viewBox="0 0 24 24" width="24" height="24"><use href="#i18"/></svg><span>本頁為金融素養教育之案例說明，數據引自產品文件之試算情境，不構成投資建議、招攬或要約。保費融資屬槓桿操作，將同時放大利率、匯率、保單價值與提前解約等風險，實際條件依各金融機構核定為準。</span></div>
+    </div>
+  </section>
+
+  <!-- ══ Andy 3：收束 ══ -->
+  <section class="slide" data-who="andy" data-mirrors>
+    <div class="slide-in">
+      <span class="kicker">財商．帶得走的判準</span>
+      <h2 class="h1" style="margin-top:12px">五面照妖鏡</h2>
+      <div class="mirrors" id="mirrors" style="margin-top:26px"></div>
+      <div class="edu-mark">本頁為金融素養教育之情境示例，不指涉任何特定商品、機構或個人，亦不構成投資建議或招攬。</div>
+    </div>
+  </section>
+
+  <!-- ══ Kevin 3：收單 ══ -->
+  <section class="slide s-offer" data-who="kevin" data-offer>
+    <div class="slide-in v-center">
+      <span class="eyebrow">本場限定．僅此一次</span>
+      <h2 class="d2" style="margin-top:14px">封測<span class="g">創始夥伴</span></h2>
+      <div class="offer2" style="margin-top:18px">
+        <div class="offer-price">
+          <div class="op-was">尊榮方案 PREMIUM 25HRS　<s>$88,800</s></div>
+          <div class="op-now">$12,800</div>
+          <div class="op-note">內容完全相同．一項都沒少</div>
+          <div class="countdown" id="cd"><svg viewBox="0 0 120 120"><circle class="cd-bg" cx="60" cy="60" r="52"/><circle class="cd-fg" cx="60" cy="60" r="52"/></svg><div class="cd-t"><b id="cdT">15:00</b><span>本場優惠倒數</span></div></div>
+        </div>
+        <figure class="qr qr--lg"><img src="assets/img/qr/offer.webp" alt="本場優惠連結"><figcaption>掃描直接報名<br><span>本場專屬優惠連結</span></figcaption></figure>
+      </div>
+      <div class="lastrow">
+        <figure class="qr qr--sm"><img src="assets/img/qr/salon.webp" alt="Salon 社群"><figcaption>先加入 Salon<br><span>不必是會員</span></figcaption></figure>
+        <figure class="qr qr--sm"><img src="assets/img/qr/line.webp" alt="客服 LINE@"><figcaption>25HRS 客服 LINE@<br><span>報名．預約．諮詢</span></figcaption></figure>
+      </div>
+      <div class="compliance" style="margin-top:14px;max-width:1300px"><svg class="ic ic--clay" viewBox="0 0 24 24" width="24" height="24"><use href="#i18"/></svg><span>25HRS 提供教育培訓、顧問賦能與陪伴傳承服務，不代表任何補助核准或獲利之保證，亦不構成投資招攬或投資建議。優惠限本場次，實際方案內容與費用以簽約文件為準。</span></div>
+    </div>
+  </section>
+
+  </div>
+
+  <div class="presenter-bar" id="pbar">
+    <button class="btn btn--icon" data-nav="prev" aria-label="上一步"><svg class="ic ic-32" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <button class="btn btn--icon" data-nav="next" aria-label="下一步"><svg class="ic ic-32" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+    <button class="btn btn--icon" data-nav="full" aria-label="全螢幕"><svg class="ic ic-32" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+  </div>
+</div></div>
+
+<script src="assets/js/mini.js"></script>
+</body>
+</html>
