@@ -944,3 +944,12 @@
   color:var(--gold-300);text-shadow:0 0 30px rgba(242,220,162,.45);}
 .pfinal i{display:block;margin-top:12px;font-style:normal;font-size:20px;line-height:1.6;color:var(--paper-72);}
 .pfinal i b{display:inline;font-size:26px;text-shadow:none;}
+
+/* ---------- 影片左右並排 ---------- */
+.slide-in.v-center>.vduo{max-width:none;}
+.vduo{display:grid;grid-template-columns:1fr 1fr;gap:48px;width:100%;margin-top:24px;}
+.vpair{margin:0;}
+.s-video .videobox--duo{width:100%;height:472px;margin-top:0;}
+.vpair figcaption{display:flex;align-items:baseline;justify-content:center;gap:14px;
+  margin-top:16px;font-size:23px;color:var(--paper-72);}
+.vpair figcaption b{font-family:var(--num);font-size:17px;letter-spacing:.14em;color:var(--gold-700);}

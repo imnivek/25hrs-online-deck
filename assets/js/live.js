@@ -70,14 +70,14 @@ const VALUE = [
 
 // 四桌分群：階段 → 需求 → 對應工具 → 陪談的創辦人
 const TABLES = [
-  { no:'桌 01', who:'想創業，還沒創業', need:'先把資本結構架好，再開始燒錢',
-    tool:'政策性貸款<br>青創　鳳凰', host:'Ainstein', img:'AINSTEIN' },
-  { no:'桌 02', who:'已創業　幼年期', need:'需要更多資源當燃料，把事情跑起來',
-    tool:'中小微貸款<br>WLB　小人提', host:'Rebecca', img:'rebecca' },
-  { no:'桌 03', who:'已創業　壯年期', need:'想轉型，想長出第二曲線',
-    tool:'SBIR　SIIR　SITI<br>數位轉型', host:'Rebecca ／ Kevin', img:'kevin' },
-  { no:'桌 04', who:'金融槓桿．人脈破圈', need:'錢要用得對，圈子要進得去',
-    tool:'資金結構與風險<br>高純度圈層', host:'Andy ／ Kevin', img:'andy' }
+  { no:'桌 01', who:'需要一筆錢，但不想先稀釋股權', need:'把資金成本壓下來，再開始燒',
+    tool:'政策性貸款<br>青創　鳳凰　中小微　信保', host:'Ainstein', img:'AINSTEIN' },
+  { no:'桌 02', who:'想拿政府資源當燃料', need:'有資格的先領，能競爭的再去比',
+    tool:'資格型　WLB　小人提<br>競賽型　SBIR　SIIR　SITI', host:'Rebecca', img:'rebecca' },
+  { no:'桌 03', who:'想轉型，想長出第二曲線', need:'把 AI 真的導進流程，不是買個工具',
+    tool:'數位轉型補助<br>AI 應用導入與落地', host:'Rebecca ／ Kevin', img:'kevin' },
+  { no:'桌 04', who:'錢要用得對，圈子要進得去', need:'資產配置與風險，先想清楚出場',
+    tool:'投資理財　資產配置<br>資金結構　高純度圈層', host:'Andy ／ Kevin', img:'andy' }
 ];
 
 const QUIZ = [

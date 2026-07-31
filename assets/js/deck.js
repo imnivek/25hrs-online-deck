@@ -1196,18 +1196,14 @@ addEventListener('click', e => {
 // 舞台點擊也可推進（避開按鈕與互動元件）
 stage.addEventListener('click', e => {
   // 互動元件自己處理點擊，不可再觸發翻頁
-  if (e.target.closest('.btn, .myth, .qcard, iframe, .videobox, .vtabs, .vtab, a')) return;
+  if (e.target.closest('.btn, .myth, .qcard, iframe, .videobox, .vpair, a')) return;
   next();
 });
 /* ── 影片：點擊才播，切分頁才換 ── */
-function playVideo(slide, i = 0) {
-  const box = $('.videobox', slide); if (!box) return;
-  const ids = (slide.dataset.video || '').split(',').filter(Boolean);
-  const starts = (slide.dataset.vstart || '').split(',');
-  const id = ids[i]; if (!id) return;
-  const st = +starts[i] || 0;
+function playVideo(box) {
+  const id = box.dataset.vid; if (!id) return;
+  const st = +box.dataset.vst || 0;
   if (!box.dataset.ph) box.dataset.ph = box.innerHTML;
-  $$('.vtab', slide).forEach((t, k) => t.classList.toggle('is-on', k === i));
   if (box.dataset.loaded === id) return;
   box.dataset.loaded = id;
   box.innerHTML =
@@ -1218,15 +1214,13 @@ function playVideo(slide, i = 0) {
      <a class="vopen" href="https://www.youtube.com/watch?v=${id}${st ? '&t=' + st : ''}" target="_blank" rel="noopener">在 YouTube 開啟</a>`;
 }
 function stopVideo(slide) {
-  const box = $('.videobox', slide);
-  if (box && box.dataset.loaded) { box.innerHTML = box.dataset.ph || ''; box.dataset.loaded = ''; }
+  $$('.videobox', slide).forEach(box => {
+    if (box.dataset.loaded) { box.innerHTML = box.dataset.ph || ''; box.dataset.loaded = ''; }
+  });
 }
 document.addEventListener('click', e => {
-  const tab = e.target.closest('.vtab');
-  if (tab) { const s = tab.closest('.slide');
-    playVideo(s, $$('.vtab', s).indexOf(tab)); return; }
   const box = e.target.closest('.videobox');
-  if (box) playVideo(box.closest('.slide'), Math.max(0, $$('.vtab', box.closest('.slide')).findIndex(t => t.classList.contains('is-on'))));
+  if (box) playVideo(box);
 });
 
 /* ══════════ 11. 啟動 ══════════ */
