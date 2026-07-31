@@ -890,7 +890,7 @@
   background:var(--surface);opacity:0;transform:translateY(14px);
   transition:all var(--dur-base) var(--ease-out);}
 .c10.is-on{opacity:1;transform:none;}
-.c10 img{width:100%;height:126px;object-fit:cover;object-position:top center;display:block;}
+.c10 img{width:100%;height:118px;object-fit:cover;object-position:top center;display:block;}
 .c10 figcaption{padding:8px 10px 10px;text-align:center;}
 .c10 figcaption b{display:block;font-family:var(--serif);font-size:21px;color:var(--paper);line-height:1.2;}
 .c10 figcaption span{display:block;margin-top:2px;font-size:15px;letter-spacing:.12em;color:var(--paper-46);}
@@ -900,3 +900,38 @@
 .show-concl .c10concl{opacity:1;transform:none;}
 .c10concl .quote{font-size:21px;line-height:1.45;padding:8px 16px;
   border-left:3px solid var(--gold-500);}
+
+/* ---------- 實體場：服務清單矩陣 ---------- */
+.planby2{display:grid;grid-template-columns:176px repeat(4,1fr);gap:8px 12px;width:100%;}
+.pb2{display:contents;}
+.pb2 .pbh{grid-row:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  gap:4px;height:104px;}
+.pb2 .pbh img{width:58px;height:58px;border-radius:50%;object-fit:cover;
+  border:1px solid var(--line-soft);filter:saturate(.88) brightness(.94);}
+.pb2 .pbh b{font-family:var(--serif);font-size:23px;color:var(--paper);}
+.pb2 .pbh span{font-size:15px;letter-spacing:.18em;color:var(--gold-700);}
+.pb2 .pbr{display:flex;flex-direction:column;justify-content:center;
+  padding:9px 14px;border:1px solid var(--line-hair);border-radius:var(--radius-sm);
+  background:var(--surface);font-size:17px;line-height:1.5;color:var(--paper-72);
+  opacity:0;transform:translateY(10px);transition:all var(--dur-base) var(--ease-out);}
+.pb2--head .pbr{background:none;border:0;padding-left:0;opacity:1;transform:none;}
+.pb2--head .pbr b{display:block;font-family:var(--serif);font-size:24px;color:var(--gold-500);white-space:nowrap;}
+.pb2--head .pbr span{display:block;margin-top:3px;font-family:var(--num);font-size:18px;color:var(--paper-46);white-space:nowrap;}
+.pb2.is-on .pbr{opacity:1;transform:none;}
+.plan-punch2{opacity:0;transform:translateY(12px);transition:all var(--dur-base) var(--ease-out);}
+.show-punch .plan-punch2{opacity:1;transform:none;}
+
+/* ---------- 實體場：價值與價格 ---------- */
+.valrow{display:grid;grid-template-columns:1.35fr 1fr;gap:34px;align-items:start;width:100%;}
+.pricecol{display:flex;flex-direction:column;gap:10px;}
+.pline{display:flex;align-items:baseline;justify-content:space-between;gap:20px;
+  padding:12px 24px;border:1px solid var(--line-hair);border-radius:var(--radius-sm);
+  background:var(--surface);font-size:21px;color:var(--paper-46);}
+.pline b.cut{font-family:var(--num);font-size:34px;color:var(--paper-46);text-decoration:line-through;}
+.pfinal{margin-top:6px;padding:22px 26px;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--surface-gold);box-shadow:var(--e-gold);text-align:center;}
+.pfinal span{display:block;font-size:20px;letter-spacing:.14em;color:var(--gold-300);}
+.pfinal b{display:block;margin-top:8px;font-family:var(--num);font-size:88px;line-height:1;
+  color:var(--gold-300);text-shadow:0 0 30px rgba(242,220,162,.45);}
+.pfinal i{display:block;margin-top:12px;font-style:normal;font-size:20px;line-height:1.6;color:var(--paper-72);}
+.pfinal i b{display:inline;font-size:26px;text-shadow:none;}

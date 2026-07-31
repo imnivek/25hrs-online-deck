@@ -51,6 +51,23 @@ const CASES10 = [
   { id:'irobot',  p:'柯林·安格爾',  co:'iRobot',   n:'SBIR 國防補助' }
 ];
 
+// 方案內容（v260723 p58 到 p62）
+const PLAN = [
+  { t:'入門講座', h:'2 HRS',            rows:['財商思維與財務規劃','從投資家到創業家','盤點創業資源','創投家俱樂部'] },
+  { t:'線上培訓', h:'9 HRS ／ 9 章',    rows:['CH1 財商思維　CH2 價值投資','CH3-CH6 衍生金融．價差合約<br>神州群英匯．政策性貸款','CH7 資格型補助　CH8 競爭型補助','CH9 數位轉型'] },
+  { t:'實戰陪跑', h:'8 HRS／場 × 半年', rows:['理財規劃　資產配置','槓桿金融與量化交易<br>政策性貸款','政府補助案<br>WLB｜SBIR｜SIIR｜SITI','創投沙龍　數位轉型'] },
+  { t:'顧問諮詢', h:'1 HR × 8 次',      rows:['資產配置顧問','量化金融顧問','政府補助顧問','數位轉型顧問'] }
+];
+const PLAN_WHO = [
+  { nm:'Andy', role:'投資長', img:'andy' }, { nm:'Ainstein', role:'執行長', img:'AINSTEIN' },
+  { nm:'Rebecca', role:'營運長', img:'rebecca' }, { nm:'Kevin', role:'行銷長', img:'kevin' }
+];
+const VALUE = [
+  { t:'微型創業資源', n:260000, items:[['政策性貸款',50000],['政府補助案',60000],['政府補助企劃顧問陪跑服務',150000]] },
+  { t:'微型投資資源', n:500000, items:[['專業投資理財與財商完整培訓',300000],['專利金融交易投資輔助軟體使用權',200000]] },
+  { t:'BONUS', n:120000, items:[['半年無限免費複訓',0],['25HRS CLUB 一年會員資格',20000],['限量 90 天商模實習創投家陪跑',100000]] }
+];
+
 // 四桌分群：階段 → 需求 → 對應工具 → 陪談的創辦人
 const TABLES = [
   { no:'桌 01', who:'想創業，還沒創業', need:'先把資本結構架好，再開始燒錢',
@@ -92,7 +109,7 @@ const slides = $$('.slide');
 let cur = 0, step = 0;
 
 const has = (s, k) => s.dataset[k] !== undefined;
-const STEPS = { flip:4, quiz:5, mirrors:5, offer:1, tables:2, tables2:2, cloud:1, cases10:2 };
+const STEPS = { flip:4, quiz:5, mirrors:5, offer:1, tables:2, tables2:2, cloud:1, cases10:2, plan:5, value:6 };
 function maxStep(s) {
   if (has(s, 'flip')) return 4;
   for (const k in STEPS) if (has(s, k)) return STEPS[k];
@@ -136,7 +153,32 @@ function drawCases(box, s, n) {
   s.classList.toggle('show-concl', n >= 2);
 }
 
+function drawPlan(box, s, n) {
+  if (!box.dataset.built) { box.dataset.built = 1;
+    box.innerHTML = `<div class="pb2 pb2--head"><div class="pbh"></div>${
+      PLAN.map(p => `<div class="pbr"><b>${p.t}</b><span>${p.h}</span></div>`).join('')}</div>`
+      + PLAN_WHO.map((w, i) => `<div class="pb2" data-i="${i}">
+        <div class="pbh"><img src="assets/img/speakers/${w.img}-avatar.webp" alt="${w.nm}"><b>${w.nm}</b><span>${w.role}</span></div>
+        ${PLAN.map(p => `<div class="pbr pbr--c">${p.rows[i]}</div>`).join('')}</div>`).join(''); }
+  $$('.pb2[data-i]', box).forEach((c, i) => c.classList.toggle('is-on', i < n));
+  s.classList.toggle('show-punch', n >= 5);
+}
+
+function drawValue(box, s, n) {
+  if (!box.dataset.built) { box.dataset.built = 1;
+    box.innerHTML = VALUE.map(v => `<div class="vrow">
+      <div class="vhd"><b class="h3">${v.t}</b><span class="vsub">$${v.n.toLocaleString()}+</span></div>
+      <ul class="vitems">${v.items.map(([t, p]) =>
+        `<li><span>${t}</span><b>${p ? '$' + p.toLocaleString() + '+' : '無價'}</b></li>`).join('')}</ul>
+    </div>`).join('') + `<div class="vtotal"><span>總價值</span><span class="vsum">$880,000+</span></div>`; }
+  $$('.vrow', box).forEach((r, i) => r.classList.toggle('is-on', i < n));
+  box.classList.toggle('is-total', n >= 4);
+  $$('.reveal', s).forEach(r => r.classList.toggle('is-revealed', +r.dataset.step <= n));
+}
+
 const H = {
+  plan(s, n) { drawPlan($('#planby', s), s, n); },
+  value(s, n) { drawValue($('#valuestack', s), s, n); },
   cloud(s, n) { drawCloud($('#cloud', s), s, n); },
   cases10(s, n) { drawCases($('#cases10', s), s, n); },
   tables(s, n) { drawTables($('#tables', s), s, n); },
@@ -196,7 +238,7 @@ function applyStep(s, n) {
 }
 
 /* 資訊型頁面進頁自動鋪開；提問、翻卡、測驗、收單留給講者控節奏 */
-const AUTO = new Set([3, 4, 8, 9, 10, 13, 14, 15, 19, 23, 24, 25, 26]);
+const AUTO = new Set([3, 4, 8, 9, 10, 13, 14, 15, 19, 23, 24, 25, 26, 27]);
 function clearAuto(s) { (s._auto || []).forEach(clearTimeout); s._auto = []; }
 function autoPlay(s) {
   clearAuto(s); const m = maxStep(s); if (!m) return;
@@ -281,6 +323,6 @@ applyStep(slides[cur], step);
 chrome();
 if (AUTO.has(cur + 1) && !QS.has('step')) autoPlay(slides[cur]);
 window.__applyStep = applyStep; window.__maxStep = maxStep;
-console.log('%c25HRS 實體場　27 頁　│　→ 下一步　← 上一步　F 全螢幕　R 重置',
+console.log('%c25HRS 實體場　29 頁　│　→ 下一步　← 上一步　F 全螢幕　R 重置',
   'color:#d6b16a;font-size:13px');
 })();
